@@ -1,7 +1,12 @@
 aid: equity-residential
-url: https://raw.githubusercontent.com/api-evangelist/equity-residential/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/equity-residential/refs/heads/main/apis.yml
 modified: '2026-03-24'
 apis: []
 common:
   - type: Website
     url: https://www.equity-residential.com
+description: >-
+  Equity Residential are Independent Letting and Management Consultants based in Eastbourne,
+  East Sussex. Family owned and run, Equity Residential offer a personal, unparalleled
+  and above all honest service for both landlords and tenants.
