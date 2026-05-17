@@ -7,7 +7,7 @@ description: >-
   States. The company owns and operates high-quality apartment communities in
   affluent, dynamic urban and high-density suburban markets where today's
   renters want to live, work, and play.
-type: Contract
+kind: contract
 position: Consumer
 access: 3rd-Party
 tags:
