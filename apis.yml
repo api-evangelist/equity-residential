@@ -25,6 +25,11 @@ access: 3rd-Party
 tags:
   - Apartments
   - Fortune 500
+  - Real-Estate
+  - REIT
+tags_raw:
+  - Apartments
+  - Fortune 500
   - Real Estate
   - REIT
 created: '2026-03-24'
