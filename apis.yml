@@ -36,15 +36,21 @@ access: 3rd-Party
 tags:
   - Apartments
   - Fortune 500
+  - Housing
+  - Multifamily
+  - Property-Management
   - Real-Estate
   - REIT
 tags_raw:
   - Apartments
   - Fortune 500
+  - Housing
+  - Multifamily
+  - Property Management
   - Real Estate
   - REIT
 created: '2026-03-24'
-modified: '2026-04-28'
+modified: '2026-09-06'
 specificationVersion: '0.23'
 apis: []
 common:
@@ -58,6 +64,53 @@ common:
   - type: Investor Relations
     url: https://investors.equityapartments.com
     name: Investors - Equity Residential
+  - type: GitHubOrganization
+    url: https://github.com/equityresidential
+    name: Equity Residential on GitHub
+  - type: Blog
+    url: https://blog.equityapartments.com/
+    name: Equity Apartments Blog
+  - type: Login
+    url: https://login.equityapartments.com/
+    name: MyEquity Resident Sign In
+  - type: PrivacyPolicy
+    url: https://privacy.equityapartments.com/
+    name: State Privacy Notice
+  - type: TermsOfService
+    url: https://www.equityapartments.com/terms
+    name: Terms of Use
+  - type: LLMsTxt
+    url: llms/equity-residential-llms.txt
+  - type: Plans
+    url: plans/equity-residential-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/equity-residential-rate-limits.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-06'
+  status: minimal
+  artifacts_added: 4
+  pass: local-v3
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Equity Residential is an apartment REIT with no developer program of any kind: six hosts
+    were probed for the full /.well-known/ discovery set plus /apis.json, /apis.yml and
+    /openapi.json and not one document was served, the first-party GitHub organization has
+    zero public repositories, and the only api.* host in the namespace (api.eqr.com) is an
+    undocumented F5 BIG-IP gateway that rejects every unauthenticated request.
+  evidence:
+    - url: https://api.eqr.com/openapi.json
+      status: 403
+    - url: https://login.equityapartments.com/.well-known/openid-configuration
+      status: 404
+    - url: https://www.equityapartments.com/.well-known/api-catalog
+      status: 302
+    - url: https://api.github.com/orgs/equityresidential/repos
+      status: 200
+    - url: https://www.equityapartments.com/robots.txt
+      status: 200
+  checked: '2026-09-06'

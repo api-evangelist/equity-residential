@@ -1,0 +1,317 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  Direct unauthenticated HTTPS probes of every host the record knows — the registrable
+  domain and www, the investor-relations host, the resident login and portal hosts, and
+  api.eqr.com (the only api.* host that resolves anywhere in the Equity Residential
+  namespace). apis.yml carries no apis[] entries and no OpenAPI, so there are no
+  baseURL or servers[] hosts to add.
+name: Equity Residential .well-known Probe
+description: >-
+  No .well-known document is served on any Equity Residential host. Four of the six hosts
+  probed are catch-alls or walls rather than document servers, and each was confirmed with
+  a negative-control probe of a path that cannot exist:
+  www.equityapartments.com and equityapartments.com answer every /.well-known/* request
+  with a 302 redirect (control included);
+  investors.equityapartments.com (a Q4 Inc. investor-relations platform) answers every
+  /.well-known/* request with an 11-byte "Invalid key" body under HTTP 200 (control included);
+  my.equityapartments.com answers every /.well-known/* request with the same 5,361-byte
+  single-page-app shell under HTTP 200 (control included);
+  api.eqr.com sits behind an F5 BIG-IP WAF that rejects every path with HTTP 403;
+  login.equityapartments.com is the only host that returns honest hard 404s.
+  NO WellKnown and NO SecurityTxt pointer is emitted for this provider — nothing here is a hit.
+hit_count: 0
+path_echo_control: passed
+soft_404_controls:
+  - host: www.equityapartments.com
+    url: https://www.equityapartments.com/.well-known/eqr-negative-control-7f3ab91c.json
+    status: 302
+    bytes: 118
+    note: Catch-all redirect. Any 302 with this 118-byte "Object moved" body is the catch-all.
+  - host: equityapartments.com
+    url: https://equityapartments.com/.well-known/eqr-negative-control-7f3ab91c.json
+    status: 302
+    bytes: 118
+    note: Same catch-all redirect as the www host.
+  - host: investors.equityapartments.com
+    url: https://investors.equityapartments.com/.well-known/eqr-negative-control-7f3ab91c.json
+    status: 200
+    bytes: 11
+    content_type: text/html; charset=utf-8
+    note: >-
+      Q4 Inc. IR platform. Any 200 on this host with the 11-byte body "Invalid key" is the
+      catch-all, not a document.
+  - host: my.equityapartments.com
+    url: https://my.equityapartments.com/.well-known/eqr-negative-control-7f3ab91c.json
+    status: 200
+    bytes: 5361
+    content_type: text/html
+    note: >-
+      MyEquity resident portal SPA. Any 200 on this host with this 5,361-byte HTML shell is
+      the single-page-app catch-all, not a document.
+  - host: api.eqr.com
+    url: https://api.eqr.com/.well-known/eqr-negative-control-7f3ab91c.json
+    status: 403
+    bytes: 309
+    note: F5 BIG-IP "The requested URL was rejected" page. Every path on this host is rejected.
+hosts:
+  - host: https://www.equityapartments.com
+    note: Public marketing and leasing site. Catch-all 302 on /.well-known/*; Cloudflare bot challenge (403) on root-level paths.
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 302
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 302
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 302
+        file: null
+      - path: /.well-known/api-catalog
+        status: 302
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 302
+        file: null
+      - path: /.well-known/apis.json
+        status: 302
+        file: null
+      - path: /apis.json
+        status: 403
+        file: null
+      - path: /apis.yml
+        status: 403
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 302
+        file: null
+      - path: /.well-known/agent.json
+        status: 302
+        file: null
+      - path: /.well-known/aauth-resource.json
+        status: 302
+        file: null
+  - host: https://equityapartments.com
+    note: Apex domain. Identical catch-all behaviour to the www host.
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 302
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 302
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 302
+        file: null
+      - path: /.well-known/api-catalog
+        status: 302
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 302
+        file: null
+      - path: /.well-known/apis.json
+        status: 302
+        file: null
+      - path: /apis.json
+        status: 403
+        file: null
+      - path: /apis.yml
+        status: 403
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 302
+        file: null
+      - path: /.well-known/agent.json
+        status: 302
+        file: null
+      - path: /.well-known/aauth-resource.json
+        status: 302
+        file: null
+  - host: https://investors.equityapartments.com
+    note: >-
+      Q4 Inc. investor-relations platform. Every /.well-known/* path returns HTTP 200 with an
+      11-byte "Invalid key" body — a catch-all, confirmed by the negative control. No document.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/openid-configuration
+        status: 301
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 301
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 301
+        file: null
+      - path: /.well-known/api-catalog
+        status: 301
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/apis.json
+        status: 200
+        file: null
+        soft_404: true
+      - path: /apis.json
+        status: 404
+        file: null
+      - path: /apis.yml
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/agent.json
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/aauth-resource.json
+        status: 200
+        file: null
+        soft_404: true
+  - host: https://login.equityapartments.com
+    note: MyEquity resident sign-in host. The only host in the namespace that returns honest hard 404s.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/apis.json
+        status: 404
+        file: null
+      - path: /apis.json
+        status: 404
+        file: null
+      - path: /apis.yml
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+      - path: /.well-known/aauth-resource.json
+        status: 404
+        file: null
+  - host: https://my.equityapartments.com
+    note: >-
+      MyEquity resident portal. Every /.well-known/* path returns the same 5,361-byte SPA shell
+      under HTTP 200 — a catch-all, confirmed by the negative control. No document.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/oauth-protected-resource
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/api-catalog
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/apis.json
+        status: 200
+        file: null
+        soft_404: true
+      - path: /apis.json
+        status: 403
+        file: null
+      - path: /apis.yml
+        status: 403
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/agent.json
+        status: 200
+        file: null
+        soft_404: true
+      - path: /.well-known/aauth-resource.json
+        status: 200
+        file: null
+        soft_404: true
+  - host: https://api.eqr.com
+    note: >-
+      The only api.* host that resolves in the Equity Residential namespace (eqr.com is the
+      corporate/investor-relations email domain — investorrelations@eqr.com is published on the
+      IR corporate profile page). It is fronted by an F5 BIG-IP WAF that rejects every request,
+      authenticated or not, with HTTP 403 "The requested URL was rejected". No contract, no
+      discovery document, and no public documentation anywhere points at it — treated as a
+      private/partner integration gateway, not a published API.
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 403
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+        file: null
+      - path: /.well-known/oauth-protected-resource
+        status: 403
+        file: null
+      - path: /.well-known/api-catalog
+        status: 403
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 403
+        file: null
+      - path: /.well-known/apis.json
+        status: 403
+        file: null
+      - path: /apis.json
+        status: 403
+        file: null
+      - path: /apis.yml
+        status: 403
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 403
+        file: null
+      - path: /.well-known/agent.json
+        status: 403
+        file: null
+      - path: /.well-known/aauth-resource.json
+        status: 403
+        file: null

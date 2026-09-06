@@ -1,0 +1,13 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://www.equityapartments.com — searched the company site, the investor-relations site
+  and the open web for a developer/API pricing or plans page on 2026-09-06. None exists.
+name: Equity Residential API Plans and Pricing
+plan_count: 0
+plans: []
+note: >-
+  Equity Residential publishes no API and therefore no API plans, tiers, quotas or overage
+  pricing. The only pricing the company publishes is apartment rent on its leasing site,
+  which is not an API commercial surface. This is an honest zero, not an unmeasured gap —
+  see x-coverage in apis.yml.

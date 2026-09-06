@@ -1,0 +1,15 @@
+generated: '2026-09-06'
+method: searched
+source: >-
+  https://www.equityapartments.com — searched the company site, the investor-relations site
+  and the open web for any published API rate limit, throttling policy or rate-limit response
+  header documentation on 2026-09-06. None exists.
+name: Equity Residential API Rate Limits
+limit_count: 0
+limits: []
+headers: []
+note: >-
+  Equity Residential publishes no API, so there are no documented rate limits, no
+  X-RateLimit-*/RateLimit-* response headers and no documented 429 behaviour to record.
+  The one API-shaped host in the namespace, api.eqr.com, rejects every unauthenticated
+  request at an F5 BIG-IP WAF with HTTP 403 and is undocumented. Honest zero.
