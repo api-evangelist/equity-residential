@@ -1,7 +1,9 @@
 ---
 title: Dirk Wakeham's Post
 url: https://www.linkedin.com/posts/dirkwakeham_avalonbay-communities-and-equity-residential-activity-7463285335716704256-Sf7l
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Equity Residential" press release artificial intelligence'
 position: 2
 source: serpapi-google

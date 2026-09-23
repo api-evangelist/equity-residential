@@ -1,7 +1,9 @@
 ---
 title: Big apartment landlords lean in to AI and proptechs as ...
 url: https://funnelleasing.com/businessinsider_ai_proptech_adds_business_flexibility/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Equity Residential" press release artificial intelligence'
 position: 4
 source: serpapi-google

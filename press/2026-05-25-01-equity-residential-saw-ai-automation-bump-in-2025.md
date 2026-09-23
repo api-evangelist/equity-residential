@@ -1,7 +1,9 @@
 ---
 title: Equity Residential saw AI, automation bump in 2025
 url: https://www.multifamilydive.com/news/equity-residential-2025-earnings-q4/811880/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Equity Residential" press release artificial intelligence'
 position: 1
 source: serpapi-google
